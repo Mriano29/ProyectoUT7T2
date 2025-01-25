@@ -1,9 +1,9 @@
 import Nav from "../components/Nav"
 
-export default function Products(){
+export default function ErrorPage(){
     return(
         <>
-        <Nav pagina={"Productos"}/>
+        <Nav pagina={"Error"}/>
         </>
     )
 }

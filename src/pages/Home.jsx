@@ -1,9 +1,9 @@
 import Nav from "../components/Nav"
 
-export default function Products(){
+export default function Home(){
     return(
         <>
-        <Nav pagina={"Productos"}/>
+        <Nav pagina={"Home"}/>
         </>
     )
 }
