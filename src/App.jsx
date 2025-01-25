@@ -1,4 +1,5 @@
 import './App.css'
+import 'regenerator-runtime/runtime';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from "./pages/Home"
 import Products from "./pages/Products"
@@ -17,15 +18,15 @@ export default function App() {
           element: <Home/>
         },
         {
-          path: 'products',
+          path: 'productos',
           element: <Products/>
         },
         {
-          path: 'about',
+          path: 'información',
           element: <AboutUs/>
         },
         {
-          path: 'contact',
+          path: 'contacto',
           element: <ContactUs/>
         }
       ]
