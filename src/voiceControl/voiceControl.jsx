@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import { useNavigate } from 'react-router-dom'
-import { Button, Paper, Box } from '@mui/material'
-import Grid from '@mui/material/Grid2'
+import { Button, Paper, Box, Card } from '@mui/material'
 import Typo from '@mui/material/Typography'
 
 const voiceControl = () => {
@@ -27,6 +26,10 @@ const voiceControl = () => {
 
   function handleAyuda() {
     setMostrarAyuda(true)
+  }
+
+  function handleCerrarAyuda() {
+    setMostrarAyuda(false)
   }
 
   const commands = [
@@ -55,6 +58,11 @@ const voiceControl = () => {
       command: 'ayuda',
       callback: () => handleAyuda()
     }
+    ,
+    {
+      command: 'cerrar ayuda',
+      callback: () => handleCerrarAyuda()
+    }
   ]
 
   const { transcript, browserSupportsSpeechRecognition } = useSpeechRecognition({ commands })
@@ -62,9 +70,6 @@ const voiceControl = () => {
   useEffect(() => {
     if (browserSupportsSpeechRecognition) {
       SpeechRecognition.startListening({ continuous: true, language: 'es-ES' })
-    }
-    return () => {
-
     }
   }, [browserSupportsSpeechRecognition])
 
@@ -83,6 +88,11 @@ const voiceControl = () => {
       >
         {transcript.length !== 0 ?
           <Paper elevation={12} style={{ padding: '16px' }}>
+            <Typo
+              fontWeight={'bold'}
+            >
+              Entrada
+            </Typo>
             <Typo>
               {transcript}
             </Typo>
@@ -93,7 +103,7 @@ const voiceControl = () => {
           flexDirection="column"
           display="flex"
           alignItems="center"
-          style={{ marginTop: '20px' }} // Puedes ajustar el margen según lo necesites
+          style={{ marginTop: '20px' }}
         >
           {mostrarBoton ?
             <Button variant="contained" onClick={handlevideo} padding={2}>
@@ -108,8 +118,8 @@ const voiceControl = () => {
             />
             : null}
           {mostrarAyuda ?
-            <>
-              <Typo textAlign={'center'}>
+           <Paper elevation={12} style={{ padding: '16px', margin: '5px'}}>
+            <Typo textAlign={'center'}>
                 Comandos: <br />
                 - navegar a *pagina* <br />
               </Typo>
@@ -120,9 +130,13 @@ const voiceControl = () => {
                 * informacion <br />
               </Typo>
               <Typo textAlign={'center'}>
-              - sorpresa
+                - sorpresa <br />
               </Typo>
-            </>
+              <Typo textAlign={'center'}>
+                - Ayuda <br />
+                - Cerrar Ayuda
+              </Typo>
+           </Paper>
             : null}
         </Box>
       </Box>
