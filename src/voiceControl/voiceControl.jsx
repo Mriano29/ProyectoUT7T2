@@ -44,8 +44,6 @@ const voiceControl = () => {
           navigate(`/${page}`)
         } else if (page === "información") {
           navigate(`/${page}`)
-        } else {
-          setMessage("Página no encontrada")
         }
       }
     },
